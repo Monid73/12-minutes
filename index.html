@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>12 минут</title>
+</head>
+<body class="main">
+
+<div class="content d-flex">
+	<img src="back.png" class="arrow" style="top: 407px; left: 780px;">
+	<img src="watch.png" class="bt" style="top: 400px; left: 1000px;">
+	<img src="burning.png" class="burn" style="top: 400px; left: 650px;">
+	<h4 class="minutes" style="top: 250px; left: 875px;">Минуты: <span class="score"></span></h4>
+	<h4 class="space" style="top: 540px; left: 730px">Целостность пространства:<span class="hp"></span>%</h4>
+</div>
+
+	<div class="boxs firsBox" style="top: 150px; left: 200px;">0</div>
+	<div class="boxs" style="top: 150px; left: 330px; background-color: yellow;">1</div>
+	<div class="boxs" style="top: 150px; left: 460px; background-color: blue;">2</div>
+	<div class="boxs" style="top: 150px; left: 590px; background-color: red;">3</div>
+	<div class="boxs" style="top: 150px; left: 720px;">4</div>
+	<div class="boxs" style="top: 150px; left: 850px; background-color: red;">5</div>
+	<div class="boxs" style="top: 150px; left: 980px;">6</div>
+	<div class="boxs" style="top: 150px; left: 1110px;">7</div>
+	<div class="boxs" style="top: 150px; left: 1240px;">8</div>
+	<div class="boxs" style="top: 150px; left: 1370px;">9</div>
+	<div class="boxs" style="top: 150px; left: 1500px; background-color: red;">10</div>
+
+	<div class="boxs" style="top: 650px; left: 200px;">11</div>
+	<div class="boxs" style="top: 650px; left: 330px;">12</div>
+	<div class="boxs" style="top: 650px; left: 460px;">13</div>
+	<div class="boxs" style="top: 650px; left: 590px; background-color: red;">14</div>
+	<div class="boxs" style="top: 650px; left: 720px; background-color: purple;">15</div>
+	<div class="boxs" style="top: 650px; left: 850px; background-color: red;">16</div>
+	<div class="boxs" style="top: 650px; left: 980px;">17</div>
+	<div class="boxs" style="top: 650px; left: 1110px; background-color: red;">18</div>
+	<div class="boxs" style="top: 650px; left: 1240px; background-color: purple;">19</div>
+	<div class="boxs" style="top: 650px; left: 1370px; background-color: red;">20</div>
+	<div class="boxs" style="top: 650px; left: 1500px;">21</div>
+
+	<div class="boxs" style="top: 300px; left: 200px;">22</div>
+	<div class="boxs" style="top: 500px; left: 200px; background-color: red;">23</div>
+	<div class="boxs" style="top: 300px; left: 1500px; background-color: pink;">24</div>
+	<div class="boxs" style="top: 500px; left: 1500px; ">25</div>
+</body>
+
+<script type="text/javascript">
+	
+	let score = 0;
+	let hp = 100;
+
+	let bt = document.querySelector(".bt");
+	let boxs = document.querySelectorAll(".boxs");
+	let outclick = document.querySelector(".outclick");
+	let arrow = document.querySelector(".arrow");
+	let burn = document.querySelector(".burn");
+
+	let step = 0;
+
+	alert("Вы попали во временну́ю петлю после взрыва в лаборатории")
+	alert("Чтобы разрушить эту петлю, вам понадобится раздобыть 12 минут из разных временны́х линий(квадратов), но ни больше, ни меньше");
+	alert("Первая кнопка уничтожает одну минуту, но и разрушает ваше пространство на 10%");
+	alert("Вторая кнопка переводит вас на одну линию назад взамен на 0,5% вашего пространства");
+	alert("Третья кнопка перемещает вас на случайную линию 0-6, забирая у вас 5% пространства");
+	alert("Важный нюанс, если вы уничтожите пространство, то ваши минуты останутся при вас, однако если вы дойдёте до конца без этих 12 минут, то вас запустит снова по петле и вы потеряете минуты");
+
+	document.querySelector(".score").innerHTML = score;
+	document.querySelector(".hp").innerHTML = hp;
+
+
+	bt.onclick = function() {
+
+		let r = Math.random();
+		let n = r * 6
+		let x = Math.round(n);
+		alert(x);
+		console.log(x);
+
+		boxs[step].style.backgroundImage = "none";
+
+		hp = hp - 5
+
+		step = step + x
+
+		document.querySelector(".hp").innerHTML = hp;
+
+		if (step == 1) {
+			alert("Скачок во времени!");
+					let rand = Math.random();
+					let non = rand * 26
+					let index = Math.round(non);
+					alert("Временная кривизна выпускает вас в случайную временную линию");
+			step = step + index;
+
+					let money = Math.random();
+					let free = money * 3
+					let yes = Math.round(free);
+					alert("Но в скачке вы тронули крупицу прошлого и получили сколько-то минут!");
+
+			score = score + yes;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 2) {
+			alert("Вы попали во временную воронку, вас выпустило в случайную верхнюю зону...");
+				let mand = Math.random();
+				let mon = mand * 10
+				let mindex = Math.round(mon);
+				alert("...но неизвестно куда...")
+			step = step + mindex;
+			score = score + 2;
+				alert("...и вы нашли две минуты!")
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 3) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 5) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 10) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 14) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 15) {
+			alert("Временной парадокс! Вы возвращаетесь обратно к началу, но не без последствий");
+			step = 0 
+			hp = hp - 5;
+			document.querySelector(".hp").innerHTML = hp;
+		}
+
+		if (step == 16) {
+			alert("Вы нашли две минуты!");
+			score= score + 2;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 18) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 19) {
+			alert("Временной парадокс! Вы возвращаетесь обратно к началу, но прихватив прошлое");
+			step = 0 
+			score = score + 3;
+			hp = hp - 5;
+			document.querySelector(".hp").innerHTML = hp;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 20) {
+			alert("Вы нашли одну минуту!");
+			score= score + 1;
+			document.querySelector(".score").innerHTML = score;
+		}
+
+		if (step == 24) {
+			alert("Ошибка в расчётах приводит вас в пучиное начало, но не даёт вам проиграть");
+			step = 0 
+			hp = hp + 60;
+			document.querySelector(".hp").innerHTML = hp;
+		}
+
+		if (hp < 1) {
+			alert("Пространство искривилось и вернуло вас снова вспять")
+			step = 0;
+			hp = 100;
+			document.querySelector(".hp").innerHTML = hp;
+		}
+
+		if (step > 25) {
+			alert("И в итоге...");
+			if (score < 12 || score > 12) {
+				alert("...вы не разрушили цикл. Он повторяется заново.")
+				step = 0;
+				score = 0;
+				hp = 100;
+				document.querySelector(".score").innerHTML = score;
+				document.querySelector(".hp").innerHTML = hp;
+			}
+			if (score == 12)	{
+				alert("...вы разрушили цикл. Время нормализовалось.");
+				document.querySelector(".main").style.display = "none";
+			}
+
+		}
+
+		boxs[step].style.backgroundImage = "url(run.png)";
+	}
+
+	burn.onclick = function() {
+		score = score - 1;
+		hp = hp - 10;
+		document.querySelector(".hp").innerHTML = hp;
+		document.querySelector(".score").innerHTML = score;
+
+		if (hp < 1) {
+			alert("Пространство искривилось и вернуло вас снова вспять")
+			step = 0;
+			hp = 100;
+			document.querySelector(".hp").innerHTML = hp;
+		}
+	}
+
+	arrow.onclick = function() {
+		step = step - 1;
+		hp = hp - 0.5
+		boxs[step + 1].style.backgroundImage = "none";
+		boxs[step].style.backgroundImage = "url(run.png)";
+		document.querySelector(".hp").innerHTML = hp;
+
+		if (hp < 1) {
+			alert("Пространство искривилось и вернуло вас снова вспять")
+			step = 0;
+			hp = 100;
+			document.querySelector(".hp").innerHTML = hp;
+		}
+	}
+
+
+
+
+</script>
+
+</html>

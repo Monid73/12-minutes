@@ -1,0 +1,49 @@
+	.arrow {
+		width: 115px;
+		position: absolute;
+	}
+
+	.bt {
+		width: 125px;
+		position: absolute;
+		transition: 0.5s;
+	}
+	
+	.burn {
+		width: 125px;
+		position: absolute;
+	}
+
+	.minutes {
+		position: absolute;
+		font-size: 30px;
+	}
+
+	.space {
+		position: absolute;
+		font-size: 30px;
+	}
+
+	.boxs {
+		height: 100px;
+		width: 100px;
+		background-color: green;
+		border: solid;
+		position: absolute;
+	}
+
+	.firsBox {
+		background-color: white;
+		background-image: url(run.png);
+	}
+
+	.d-flex {
+		display: flex;
+	}
+
+	.reaction {
+		height: 350px;
+		width: 800px;
+		background-color: red;
+		position: absolute;
+	}
